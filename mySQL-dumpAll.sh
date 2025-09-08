@@ -1,3 +1,5 @@
+### This will dump all databases on your host. Good for if you are moving to a new host or cloning for a DEV instance
+### BMoore
 #!/bin/bash
 
 # MySQL credentials
