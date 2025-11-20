@@ -1,5 +1,5 @@
 <# 
-    The do0der's Windows 11 Gaming Quiet Mode – Star Citizen
+    The do0der's Windows 11 Gaming Mode – Star Citizen
     - Temporarily disables noisy services, scheduled tasks, telemetry, indexing, updates, and network discovery
     - Sets high performance power, disables background apps, notification toasts, and animations
     - Restores everything with -Disable
@@ -10,7 +10,7 @@ param()
 function New-GamingRestorePoint {
     Write-Host "Creating a System Restore Point..."
     try {
-        Checkpoint-Computer -Description "GamingQuietMode" -RestorePointType "MODIFY_SETTINGS" | Out-Null
+        Checkpoint-Computer -Description "GamingMode" -RestorePointType "MODIFY_SETTINGS" | Out-Null
     } catch {
         Write-Warning "Restore point failed (might be disabled). Continuing cautiously."
     }
@@ -171,17 +171,17 @@ function ToggleGamingMode {
         Apply-UX
         Apply-Network
         Apply-UpdatePolicies
-        Write-Host "Gaming Quiet Mode ENABLED. Reboot recommended."
+        Write-Host "Gaming Mode ENABLED. Reboot recommended."
     } elseif ($Disable) {
         Restore-Services
         Restore-Tasks
         Remove-Network
         Remove-UpdatePolicies
-        Write-Host "Gaming Quiet Mode DISABLED. Reboot recommended."
+        Write-Host "Gaming Mode DISABLED. Reboot recommended."
     } else {
-        Write-Host "Usage: .\GamingQuietMode.ps1 -Enable   OR   -Disable"
+        Write-Host "Usage: ./game-mode-toggler.ps1  OR   -Disable"
     }
 }
 
 # Auto-run if passed
-# Example: .\GamingQuietMode.ps1 -Enable
+# Example: ./game-mode-toggler.ps1 -Enable
